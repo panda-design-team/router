@@ -21,11 +21,19 @@ const Container = styled.div<ContainerProps>`
     cursor: pointer;
     transition: height 0.3s;
 
-    color: ${props => (props.isActive ? colors.black : colors['gray-8'])};
-    background-color: ${props => (props.isActive ? `var(--panda-left-navigation-active-background-color, ${colors['gray-4']})` : 'unset')};
+    color: ${props => (
+        props.isActive
+            ? `var(--panda-left-navigation-active-color, ${colors.black})`
+            : `var(--panda-left-navigation-color, ${colors['gray-8']})`
+    )};
+    background-color: ${props => (
+        props.isActive
+            ? `var(--panda-left-navigation-active-background-color, ${colors['gray-4']})`
+            : 'unset'
+    )};
     
     :hover {
-        color: ${colors.black};
+        color: ${`var(--panda-left-navigation-active-color, ${colors.black})`};
         background-color: ${`var(--panda-left-navigation-active-background-color, ${colors['gray-4']})`};
     }
 `;

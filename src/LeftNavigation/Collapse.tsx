@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import {colors} from '@panda-design/components';
 import {IconCollapse} from '../icons';
+import {css} from '@emotion/css';
 
 const CollapseContainer = styled.div`
     height: 40px;
@@ -9,21 +10,14 @@ const CollapseContainer = styled.div`
     justify-content: center;
     cursor: pointer;
     border-top: 1px solid ${colors['gray-4']};
-    color: ${colors['gray-8']};
+    color: ${`var(--panda-left-navigation-color, ${colors['gray-8']})`};
 
     :hover {
-        color: ${colors.black};
+        color: ${`var(--panda-left-navigation-active-color, ${colors.black})`};
         background-color: ${`var(--panda-left-navigation-active-background-color, ${colors['gray-4']})`};
     }
 `;
 
-interface IconProps {
-    collapsed?: boolean;
-}
-
-const StyledIconCollapse = styled(IconCollapse)<IconProps>`
-    transform: ${props => (props.collapsed ? 'rotate(180deg)' : 'unset')};
-`;
 
 interface Props {
     collapsed: boolean;
@@ -31,11 +25,14 @@ interface Props {
 }
 
 const Collapse = ({collapsed, onClick}: Props) => {
+    const iconCss = css`
+        transform: ${collapsed ? 'rotate(180deg)' : 'unset'};
+    `;
     return (
         <CollapseContainer
             onClick={onClick}
         >
-            <StyledIconCollapse collapsed={collapsed} />
+            <IconCollapse className={iconCss} />
         </CollapseContainer>
     );
 };
