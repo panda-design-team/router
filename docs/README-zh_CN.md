@@ -8,15 +8,9 @@
 
 [English](https://github.com/panda-design-team/router/blob/main/README.md) | 中文
 
-## 安装
+## Get Started
 
-- install
-
-```bash
-yarn add @panda-design/router
-```
-
-- install
+- 安装
 
 ```bash
 yarn add @panda-design/router

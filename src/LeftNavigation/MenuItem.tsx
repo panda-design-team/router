@@ -10,8 +10,6 @@ interface ContainerProps {
     isActive: boolean;
 }
 
-const backgroundActive = colors['gray-4'];
-
 const Container = styled.div<ContainerProps>`
     position: relative;
     display: flex;
@@ -24,10 +22,11 @@ const Container = styled.div<ContainerProps>`
     transition: height 0.3s;
 
     color: ${props => (props.isActive ? colors.black : colors['gray-8'])};
-    background-color: ${props => (props.isActive ? backgroundActive : 'unset')};
+    background-color: ${props => (props.isActive ? `var(--panda-left-navigation-active-background-color, ${colors['gray-4']})` : 'unset')};
+    
     :hover {
         color: ${colors.black};
-        background-color: ${backgroundActive};
+        background-color: ${`var(--panda-left-navigation-active-background-color, ${colors['gray-4']})`};
     }
 `;
 
@@ -35,7 +34,6 @@ interface StyleProps {
     collapsed: boolean;
 }
 
-// 使用绝对定位获得更优的动画效果，unset 可能导致闪烁，需要再调整
 const IconContainer = styled.div`
     position: absolute;
     left: 15px;

@@ -14,12 +14,18 @@ const Container = styled.div`
     transition: all 0.3s;
 `;
 
-// 使用绝对定位获得更优的动画效果，unset 可能导致闪烁，需要再调整
 const IconContainer = styled.div`
     position: absolute;
     left: 13px;
     top: 13px;
     transition: all 0.3s;
+    
+    svg {
+        font-size: 24px;
+        width: 24px;
+        height: 24px;
+        top: 0;
+    }
 `;
 
 const TitleContainer = styled.div`

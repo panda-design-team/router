@@ -9,6 +9,12 @@ const CollapseContainer = styled.div`
     justify-content: center;
     cursor: pointer;
     border-top: 1px solid ${colors['gray-4']};
+    color: ${colors['gray-8']};
+
+    :hover {
+        color: ${colors.black};
+        background-color: ${`var(--panda-left-navigation-active-background-color, ${colors['gray-4']})`};
+    }
 `;
 
 interface IconProps {

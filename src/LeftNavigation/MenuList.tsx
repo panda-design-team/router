@@ -4,6 +4,7 @@ import {Fragment} from 'react';
 import {colors} from '@panda-design/components';
 import {LeftNavigationProps} from './interface';
 import MenuItem from './MenuItem';
+import {css} from '@emotion/css';
 
 interface ContainerProps {
     level: 1 | 2;
@@ -14,6 +15,10 @@ const Container = styled.div<ContainerProps>`
     padding-top: ${props => (props.level === 1 ? '6px' : '4px')};
     padding-bottom: ${props => (props.level === 1 ? '6px' : '4px')};
     background-color: ${props => (props.level === 1 ? colors['gray-2'] : colors['gray-3'])};
+`;
+
+const dividerCss = css`
+    margin: 4px 0 !important;
 `;
 
 interface Props {
@@ -28,7 +33,7 @@ const MenuList = ({level, collapsed, items}: Props) => {
         <Container level={level}>
             {items.map((item, index) => {
                 if (item.type === 'divider') {
-                    return <Divider key={`divider-${index}`} />;
+                    return <Divider key={`divider-${index}`} className={dividerCss} />;
                 }
                 const element = (
                     <MenuItem
