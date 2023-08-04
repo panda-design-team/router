@@ -1,20 +1,25 @@
 import {Divider} from 'antd';
-import styled from '@emotion/styled';
 import {Fragment} from 'react';
 import {colors} from '@panda-design/components';
+import {css} from '@emotion/css';
 import {LeftNavigationProps} from './interface';
 import MenuItem from './MenuItem';
-import {css} from '@emotion/css';
 
-interface ContainerProps {
-    level: 1 | 2;
-}
-
-const Container = styled.div<ContainerProps>`
+const levelPrimaryCss = css`
     flex: 1;
-    padding-top: ${props => (props.level === 1 ? '6px' : '4px')};
-    padding-bottom: ${props => (props.level === 1 ? '6px' : '4px')};
-    background-color: ${props => (props.level === 1 ? colors['gray-2'] : colors['gray-3'])};
+    padding-top: 6px;
+    padding-bottom: 6px;
+    background-color: ${colors['gray-2']};
+    width: calc(100% + 20px);
+    overflow-x: hidden;
+    overflow-y: auto;
+`;
+
+const levelSecondaryCss = css`
+    flex: 1;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    background-color: ${colors['gray-3']};
 `;
 
 const dividerCss = css`
@@ -30,7 +35,7 @@ interface Props {
 /* eslint-disable react/no-array-index-key */
 const MenuList = ({level, collapsed, items}: Props) => {
     return (
-        <Container level={level}>
+        <div className={level === 1 ? levelPrimaryCss : levelSecondaryCss}>
             {items.map((item, index) => {
                 if (item.type === 'divider') {
                     return <Divider key={`divider-${index}`} className={dividerCss} />;
@@ -38,7 +43,7 @@ const MenuList = ({level, collapsed, items}: Props) => {
                 const element = (
                     <MenuItem
                         key={`item-${item.title}-${index}`}
-                        level={1}
+                        level={level}
                         collapsed={collapsed}
                         item={item}
                     />
@@ -53,7 +58,7 @@ const MenuList = ({level, collapsed, items}: Props) => {
                 }
                 return element;
             })}
-        </Container>
+        </div>
     );
 };
 /* eslint-enable react/no-array-index-key */

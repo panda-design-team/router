@@ -1,12 +1,13 @@
 import styled from '@emotion/styled';
 import useMergedState from 'rc-util/lib/hooks/useMergedState';
-import {useCallback} from 'react';
+import {useCallback, useMemo} from 'react';
 import {colors} from '@panda-design/components';
+import {css, cx} from '@emotion/css';
 import {LeftNavigationProps} from './interface';
 import Logo from './Logo';
 import MenuList from './MenuList';
 import Collapse from './Collapse';
-import {css, cx} from '@emotion/css';
+import {OptionsContextProvider} from './Context';
 
 const Container = styled.div`
     position: fixed;
@@ -19,10 +20,6 @@ const Container = styled.div`
     border-right: 1px solid ${colors['gray-4']};
     overflow: hidden;
     transition: width 0.3s;
-
-    svg {
-        font-size: 20px;
-    }
 `;
 
 const WidthPlaceholder = styled.div`
@@ -41,6 +38,8 @@ const LeftNavigation = ({
     defaultCollapsed,
     collapsed,
     onCollapse,
+    enableSecondaryMenuIndent,
+    enableMenuActiveLeftBar,
 }: LeftNavigationProps) => {
     const [innerCollapsed, setInnerCollapsed] = useMergedState(false, {
         value: collapsed,
@@ -56,14 +55,25 @@ const LeftNavigation = ({
         },
         [enableCollapse, innerCollapsed, onCollapse, setInnerCollapsed]
     );
+    /* eslint-disable indent */
     const widthCss = css`
         width: ${innerCollapsed
             ? 'var(--panda-left-navigation-width-collapsed, 50px)'
             : 'var(--panda-left-navigation-width-expanded, 160px)'
         };
     `;
+    /* eslint-enable indent */
+
+    const context = useMemo(
+        () => ({
+            enableSecondaryMenuIndent,
+            enableMenuActiveLeftBar,
+        }),
+        [enableSecondaryMenuIndent, enableMenuActiveLeftBar]
+    );
+
     return (
-        <>
+        <OptionsContextProvider value={context}>
             <Container
                 className={cx(className, widthCss)}
                 style={style}
@@ -73,7 +83,7 @@ const LeftNavigation = ({
                 <Collapse collapsed={innerCollapsed} onClick={handleClick} />
             </Container>
             <WidthPlaceholder className={widthCss} />
-        </>
+        </OptionsContextProvider>
     );
 };
 

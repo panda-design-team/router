@@ -2,7 +2,7 @@ import LeftNavigation from './LeftNavigation';
 import {
     LeftNavigationProps,
     LeftNavigationMenuItem,
-    LeftNavigationDividerItem
+    LeftNavigationDividerItem,
 } from './LeftNavigation/interface';
 import {useRouteBreadcrumbItems} from './RouteConfig/useRouteBreadcrumbItems';
 import {useRouteDocumentTitle} from './RouteConfig/useRouteDocumentTitle';
@@ -13,11 +13,11 @@ export type {
     LeftNavigationMenuItem,
     LeftNavigationDividerItem,
     RouteObject,
-    BreadcrumbMenuItem
-}
+    BreadcrumbMenuItem,
+};
 
 export {
     LeftNavigation,
     useRouteBreadcrumbItems,
-    useRouteDocumentTitle
-}
+    useRouteDocumentTitle,
+};
