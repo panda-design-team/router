@@ -15,10 +15,9 @@ const Container = styled.div`
     overflow: hidden;
     white-space: nowrap;
     cursor: pointer;
-    transition: height 0.3s;
+    transition: width 0.3s, height 0.3s;
 
     :hover {
-        color: ${`var(--panda-left-navigation-active-color, ${colors.black})`};
         background-color: ${`var(--panda-left-navigation-active-background-color, ${colors['gray-4']})`};
     }
 `;

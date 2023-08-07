@@ -11,14 +11,12 @@ const Container = styled.div`
     border-bottom: 1px solid ${colors['gray-4']};
     overflow: hidden;
     white-space: nowrap;
-    transition: all 0.3s;
 `;
 
 const IconContainer = styled.div`
     position: absolute;
     left: 13px;
     top: 13px;
-    transition: all 0.3s;
     
     svg {
         font-size: 24px;
@@ -33,7 +31,6 @@ const TitleContainer = styled.div`
     top: 14px;
     left: 40px;
     font-size: 14px;
-    transition: all 0.3s;
 `;
 
 interface Props {
