@@ -20,6 +20,7 @@ const Container = styled.div`
     border-right: 1px solid ${colors['gray-4']};
     overflow: hidden;
     transition: width 0.3s;
+    z-index: 1;
 `;
 
 const WidthPlaceholder = styled.div`
@@ -27,8 +28,7 @@ const WidthPlaceholder = styled.div`
     transition: width 0.3s;
 `;
 
-// keep file，后续开发新版侧边栏
-const LeftNavigation = ({
+export const LeftNavigation = ({
     icon,
     title,
     className,
@@ -86,5 +86,3 @@ const LeftNavigation = ({
         </OptionsContextProvider>
     );
 };
-
-export default LeftNavigation;

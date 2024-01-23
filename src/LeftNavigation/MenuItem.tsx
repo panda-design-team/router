@@ -102,7 +102,7 @@ const MenuItem = ({level, collapsed, item}: Props) => {
         onClick,
         tooltip,
     } = item;
-    const isActive = item.isActive ?? location.pathname === to;
+    const isActive = item.isActive ?? location.pathname.startsWith(to as string);
     const indentWithoutLeftBar = level === 2 ? (enableSecondaryMenuIndent ?? 0) : 0;
     const indent = enableMenuActiveLeftBar ? indentWithoutLeftBar - 4 : indentWithoutLeftBar;
 
