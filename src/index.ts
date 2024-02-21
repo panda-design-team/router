@@ -7,4 +7,4 @@ export type {
 export {useRouteBreadcrumbItems} from './RouteConfig/useRouteBreadcrumbItems';
 export {useRouteDocumentTitle} from './RouteConfig/useRouteDocumentTitle';
 export type {RouteObject, BreadcrumbMenuItem} from './RouteConfig/interface';
-export {queryString, useSearchParams, useSearchReplace} from './hooks/useSearchParams';
+export {queryString, useSearchParams, useSearchParamsUpdate} from './hooks/useSearchParams';

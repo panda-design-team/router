@@ -23,7 +23,13 @@ const omitByUndefined = (object: Record<string, unknown>) => {
     return result;
 };
 
-export const useSearchReplace = (strategy: 'merge' | 'reset' = 'merge') => {
+interface ParamsSearchReplace {
+    strategy?: 'merge' | 'reset';
+    replace?: boolean;
+}
+
+export const useSearchParamsUpdate = (options?: ParamsSearchReplace) => {
+    const {strategy = 'merge', replace = true} = options ?? {};
     const navigate = useNavigate();
 
     const handleSearchReplace = useCallback(
@@ -32,9 +38,9 @@ export const useSearchReplace = (strategy: 'merge' | 'reset' = 'merge') => {
             const nextParams = strategy === 'reset'
                 ? omitByUndefined(params)
                 : omitByUndefined({...prevParams, ...params});
-            navigate({search: queryStringify(nextParams)}, {replace: true});
+            navigate({search: queryStringify(nextParams)}, {replace});
         },
-        [navigate, strategy]
+        [navigate, replace, strategy]
     );
 
     return handleSearchReplace;
