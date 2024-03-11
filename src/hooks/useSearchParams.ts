@@ -23,12 +23,12 @@ const omitByUndefined = (object: Record<string, unknown>) => {
     return result;
 };
 
-interface ParamsSearchReplace {
+export interface ParamsSearchParamsUpdate {
     strategy?: 'merge' | 'reset';
     replace?: boolean;
 }
 
-export const useSearchParamsUpdate = (options?: ParamsSearchReplace) => {
+export const useSearchParamsUpdate = (options?: ParamsSearchParamsUpdate) => {
     const {strategy = 'merge', replace = true} = options ?? {};
     const navigate = useNavigate();
 
