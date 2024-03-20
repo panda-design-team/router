@@ -1,15 +1,15 @@
 {
   "name": "@panda-design/router",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Panda Design",
+  "type": "module",
   "main": "es/index.js",
   "module": "es/index.js",
   "types": "es/index.d.ts",
   "scripts": {
     "test": "skr test --",
     "lint": "skr lint",
-    "cp-svg": "node scripts/cp-svg.mjs",
-    "build": "rm -rf es/ && tsc && yarn cp-svg",
+    "build": "rm -rf es/ && tsc",
     "prepublishOnly": "yarn build"
   },
   "peerDependencies": {

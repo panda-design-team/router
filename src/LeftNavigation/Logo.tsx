@@ -16,7 +16,7 @@ const Container = styled.div`
 const IconContainer = styled.div`
     position: absolute;
     left: 13px;
-    top: 13px;
+    height: 24px;
     
     svg {
         font-size: 24px;
@@ -28,7 +28,6 @@ const IconContainer = styled.div`
 
 const TitleContainer = styled.div`
     position: absolute;
-    top: 14px;
     left: 40px;
     font-size: 14px;
 `;
