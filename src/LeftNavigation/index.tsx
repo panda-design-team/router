@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import useMergedState from 'rc-util/lib/hooks/useMergedState';
+import useMergedState from 'rc-util/es/hooks/useMergedState';
 import {useCallback, useMemo} from 'react';
 import {colors} from '@panda-design/components';
 import {css, cx} from '@emotion/css';
