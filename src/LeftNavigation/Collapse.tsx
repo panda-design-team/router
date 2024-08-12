@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import {colors} from '@panda-design/components';
 import {css} from '@emotion/css';
+import {colors} from '../constants/colors';
 import {IconCollapse} from '../icons';
 
 const CollapseContainer = styled.div`

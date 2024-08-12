@@ -1,6 +1,6 @@
 import {ReactNode} from 'react';
-import {colors} from '@panda-design/components';
 import styled from '@emotion/styled';
+import {colors} from '../constants/colors';
 
 const Container = styled.div`
     position: relative;

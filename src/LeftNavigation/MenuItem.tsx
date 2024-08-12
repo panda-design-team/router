@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
-import {colors} from '@panda-design/components';
 import {useLocation, useNavigate} from 'react-router-dom';
 import {useCallback, useLayoutEffect, useMemo, useRef} from 'react';
 import {Tooltip} from 'antd';
 import {css, cx} from '@emotion/css';
+import {colors} from '../constants/colors';
 import {LeftNavigationMenuItem} from './interface';
 import {useOptionsContext} from './Context';
 

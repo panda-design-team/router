@@ -1,7 +1,7 @@
 import {Divider} from 'antd';
 import {Fragment} from 'react';
-import {colors} from '@panda-design/components';
 import {css} from '@emotion/css';
+import {colors} from '../constants/colors';
 import {LeftNavigationProps} from './interface';
 import MenuItem from './MenuItem';
 
