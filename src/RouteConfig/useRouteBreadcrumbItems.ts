@@ -4,30 +4,19 @@ import {useMemo} from 'react';
 import {RouteObject, PartialRouteMatch} from './interface';
 
 // eslint-disable-next-line max-len
-const getBreadcrumbItemsFromRoute = (routes: RouteObject[], routeMatches: PartialRouteMatch[] | null): BreadcrumbItemType[] => {
+const getBreadcrumbItemsFromRoute = (routeMatches: PartialRouteMatch[] | null): BreadcrumbItemType[] => {
     if (!routeMatches) {
         return [];
     }
-    let currentRoutes = routes;
     const items: BreadcrumbItemType[] = [];
-    // eslint-disable-next-line @typescript-eslint/prefer-for-of
-    for (let i = 0; i < routeMatches.length; i++) {
-        const routeMatch = routeMatches[i];
-        const nextRoute = currentRoutes.find(route => route.path === routeMatch.route.path);
-        if (!nextRoute) {
-            return items;
-        }
-        if (nextRoute?.breadcrumbProps) {
-            items.push(nextRoute.breadcrumbProps);
-        }
-        else if (nextRoute?.breadcrumb) {
-            items.push({title: nextRoute.breadcrumb});
-        }
-        if (nextRoute?.children) {
-            currentRoutes = nextRoute?.children;
-        }
-        else {
-            return items;
+
+    for (const match of routeMatches) {
+        const route = match.route as RouteObject;
+
+        if (route.breadcrumbProps) {
+            items.push(route.breadcrumbProps);
+        } else if (route.breadcrumb) {
+            items.push({title: route.breadcrumb});
         }
     }
     return items;
@@ -38,8 +27,7 @@ export const useRouteBreadcrumbItems = (routes: RouteObject[]) => {
     return useMemo(
         () => {
             const routeMatches = matchRoutes(routes, location);
-            const items = getBreadcrumbItemsFromRoute(routes, routeMatches);
-            return items;
+            return getBreadcrumbItemsFromRoute(routeMatches);
         },
         [location, routes]
     );
