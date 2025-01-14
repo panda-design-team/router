@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import {css} from '@emotion/css';
-import {colors} from '../constants/colors';
 import {IconCollapse} from '../icons';
+import {variables} from '../constants/variables';
 
 const CollapseContainer = styled.div`
     height: 40px;
@@ -9,8 +9,8 @@ const CollapseContainer = styled.div`
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    border-top: 1px solid ${colors['gray-4']};
-    color: ${`var(--panda-left-navigation-color, ${colors['gray-8']})`};
+    border-top: 1px solid ${variables.borderColor};
+    color: ${variables.color};
     flex-shrink: 0;
 
     svg {
@@ -21,8 +21,7 @@ const CollapseContainer = styled.div`
     }
 
     :hover {
-        color: ${`var(--panda-left-navigation-active-color, ${colors.black})`};
-        background-color: ${`var(--panda-left-navigation-active-background-color, ${colors['gray-4']})`};
+        background-color: ${variables.hoverBg};
     }
 `;
 

@@ -31,9 +31,7 @@ export interface LeftNavigationMenuItem {
 
 export interface LeftNavigationProps {
     // Logo 必选
-    icon: ReactNode;
-    // 项目标题必选
-    title: ReactNode;
+    logo: LeftNavigationMenuItem;
     // 菜单配置，必选
     items: Array<LeftNavigationMenuItem | LeftNavigationDividerItem>;
     // 折叠相关
