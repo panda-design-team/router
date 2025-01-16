@@ -4,12 +4,13 @@ import {useCallback, useMemo} from 'react';
 import {css, cx} from '@emotion/css';
 import {variables} from '../constants/variables';
 import {LeftNavigationProps} from './interface';
-import Logo from './Logo';
 import MenuList from './MenuList';
 import Collapse from './Collapse';
 import {OptionsContextProvider} from './Context';
+import {Divider} from './Divider';
+import {MenuItemIconOnly} from './MenuItemIconOnly';
+import {festivalExpandedCss} from './festival';
 
-/* eslint-disable max-len */
 const Container = styled.div`
     position: fixed;
     display: flex;
@@ -22,21 +23,36 @@ const Container = styled.div`
     overflow: hidden;
     transition: width 0.3s;
     z-index: 1;
-    //background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAK0lEQVQYlWN49+7df2IwA8kK7969ixVjVYhuCl6FyCZRRyFRVhPlGaqFIwBOUXXMlPbWHgAAAABJRU5ErkJggg==");
 `;
 
 const collapsedCss = css`
     width: ${variables.widthCollapsed};
-    padding-left: ${variables.paddingCollapsed};
-    padding-right: ${variables.paddingCollapsed};
+    // 上下的还需讨论确定下
+    padding: ${variables.paddingCollapsed};
+    gap: ${variables.gapVerticalCollapsed};
 `;
 
 const expandedCss = css`
     width: ${variables.widthExpanded};
-    padding-left: ${variables.paddingExpanded};
-    padding-right: ${variables.paddingExpanded};
+    // 上下的还需讨论确定下
+    padding: ${variables.paddingExpanded};
+    gap: ${variables.gapVerticalExpanded};
 `;
-/* eslint-enable max-len */
+
+const itemCss = css`
+    height: 40px !important;
+`;
+
+const HiddenScrollbar = styled.div`
+    width: calc(100% + 20px);
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-right: 20px;
+`;
+
+const Flex1 = styled.div`
+    flex: 1;
+`;
 
 const WidthPlaceholder = styled.div`
     flex-shrink: 0;
@@ -53,7 +69,7 @@ export const LeftNavigation = ({
     collapsed,
     onCollapse,
     enableSecondaryMenuIndent,
-    enableMenuActiveLeftBar,
+    enableFestival,
 }: LeftNavigationProps) => {
     const [innerCollapsed, setInnerCollapsed] = useMergedState(false, {
         value: collapsed,
@@ -71,21 +87,27 @@ export const LeftNavigation = ({
     );
 
     const context = useMemo(
-        () => ({
-            enableSecondaryMenuIndent,
-            enableMenuActiveLeftBar,
-        }),
-        [enableSecondaryMenuIndent, enableMenuActiveLeftBar]
+        () => ({enableSecondaryMenuIndent}),
+        [enableSecondaryMenuIndent]
     );
 
     return (
         <OptionsContextProvider value={context}>
             <Container
-                className={cx(className, innerCollapsed ? collapsedCss : expandedCss)}
+                className={cx(
+                    className,
+                    innerCollapsed ? collapsedCss : expandedCss,
+                    enableFestival && (innerCollapsed ? festivalExpandedCss : festivalExpandedCss)
+                )}
                 style={style}
             >
-                <Logo collapsed={innerCollapsed} item={logo} />
-                <MenuList collapsed={innerCollapsed} level={1} items={items} />
+                <MenuItemIconOnly collapsed={innerCollapsed} item={{className: itemCss, ...logo}} />
+                <Divider collapsed={collapsed} />
+                <HiddenScrollbar>
+                    <MenuList collapsed={innerCollapsed} level={1} items={items} />
+                </HiddenScrollbar>
+                <Flex1 />
+                <Divider collapsed={collapsed} />
                 <Collapse collapsed={innerCollapsed} onClick={handleClick} />
             </Container>
             <WidthPlaceholder className={innerCollapsed ? collapsedCss : expandedCss} />

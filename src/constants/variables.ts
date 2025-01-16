@@ -26,5 +26,10 @@ export const variables = {
     iconSize: 'var(--panda-left-navigation-icon-size, 16px)',
     iconTop: 'var(--panda-left-navigation-icon-top, 7px)',
     gapVerticalCollapsed: 'var(--panda-left-navigation-gap-vertical-collapsed, 4px)',
-    gapVerticalExpanded: 'var(--panda-left-navigation-gap-vertical-expanded, 0px)',
+    gapVerticalExpanded: 'var(--panda-left-navigation-gap-vertical-expanded, 4px)',
+};
+
+export const calculated = {
+    innerWidthCollapsed: `calc(${variables.widthCollapsed} - 5px)`,
+    innerWidthExpanded: `calc(${variables.widthExpanded} - 9px)`,
 };

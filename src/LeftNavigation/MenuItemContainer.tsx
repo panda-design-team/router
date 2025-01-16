@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import {useNavigate} from 'react-router-dom';
 import {ReactNode, useCallback} from 'react';
 import {css, cx} from '@emotion/css';
-import {variables} from '../constants/variables';
+import {calculated, variables} from '../constants/variables';
 import {LeftNavigationMenuItem} from './interface';
 
 const Container = styled.div`
@@ -32,13 +32,13 @@ const inactiveContainerCss = css`
 `;
 
 const collapsedContainerCss = css`
-    width: calc(${variables.widthCollapsed} - 5px); // 57 - 4 - 1
+    width: ${calculated.innerWidthCollapsed};
     height: 52px;
     border-radius: 4px;
 `;
 
 const expandedContainerCss = css`
-    width: calc(${variables.widthExpanded} - 9px); // 160 - 8 - 1
+    width: ${calculated.innerWidthExpanded};
     height: 40px;
     border-radius: 6px;
 `;

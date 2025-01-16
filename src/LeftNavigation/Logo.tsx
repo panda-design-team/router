@@ -9,7 +9,6 @@ const Container = styled.div`
     justify-content: center;
     flex-shrink: 0;
     height: 50px;
-    border-bottom: 1px solid ${variables.borderColor};
     overflow: hidden;
     white-space: nowrap;
 `;

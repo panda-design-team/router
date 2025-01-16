@@ -1,30 +1,15 @@
-import {Divider} from 'antd';
 import {Fragment, useMemo} from 'react';
-import {css, cx} from '@emotion/css';
-import {variables} from '../constants/variables';
+import {css} from '@emotion/css';
+import styled from '@emotion/styled';
+import {calculated, variables} from '../constants/variables';
+import {Divider} from './Divider';
 import {LeftNavigationProps} from './interface';
-import MenuItem from './MenuItem';
+import {MenuItem} from './MenuItem';
 
-const level1Css = css`
+const Container = styled.div`
     display: flex;
     flex-direction: column;
-    width: calc(100% + 20px);
-    overflow-x: hidden;
-    overflow-y: auto;
-`;
-
-const level2Css = css`
-    display: flex;
-    flex-direction: column;
-`;
-
-const level2CollapsedCss = css`
-    width: 52px;
-    border-radius: 4px;
-`;
-
-const dividerCss = css`
-    margin: 4px 0 !important;
+    transition: width 0.3s;
 `;
 
 const getBg = (level: 1 | 2, collapse: boolean) => {
@@ -34,41 +19,31 @@ const getBg = (level: 1 | 2, collapse: boolean) => {
     return collapse ? variables.level2BgCollapsed : variables.level2BgExpanded;
 };
 
-const getGapVertical = (collapse: boolean) => {
-    return collapse ? variables.gapVerticalCollapsed : variables.gapVerticalExpanded;
-};
-
 interface Props {
     collapsed: boolean;
     level: 1 | 2;
     items: LeftNavigationProps['items'];
 }
 
-/* eslint-disable react/no-array-index-key, max-len */
 const MenuList = ({level, collapsed, items}: Props) => {
     const dynamicCss = useMemo(
         () => {
             const bg = getBg(level, collapsed);
-            const gapVertical = getGapVertical(collapsed);
             return css`
                 background-color: ${bg};
-                padding-top: ${level === 1 ? gapVertical : 0};
-                padding-bottom: ${level === 1 ? gapVertical : 0};
-                gap: ${gapVertical};
+                gap: ${collapsed ? variables.gapVerticalCollapsed : variables.gapVerticalExpanded};
+                border-radius: ${collapsed ? '4px' : '6px'};
+                width: ${collapsed ? calculated.innerWidthCollapsed : calculated.innerWidthExpanded};
             `;
         },
         [level, collapsed]
     );
     return (
-        <div className={cx(
-            level === 1 ? level1Css : level2Css,
-            dynamicCss,
-            level === 2 && collapsed && level2CollapsedCss
-        )}
-        >
+        <Container className={dynamicCss}>
             {items.map((item, index) => {
+                /* eslint-disable react/no-array-index-key */
                 if (item.type === 'divider') {
-                    return <Divider key={`divider-${index}`} className={dividerCss} />;
+                    return <Divider key={`divider-${index}`} collapsed={collapsed} />;
                 }
                 const element = (
                     <MenuItem
@@ -87,10 +62,10 @@ const MenuList = ({level, collapsed, items}: Props) => {
                     );
                 }
                 return element;
+                /* eslint-enable react/no-array-index-key */
             })}
-        </div>
+        </Container>
     );
 };
-/* eslint-enable react/no-array-index-key */
 
 export default MenuList;

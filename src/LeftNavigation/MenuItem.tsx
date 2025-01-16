@@ -53,7 +53,7 @@ interface Props {
 }
 
 // eslint-disable-next-line complexity
-const MenuItem = ({level, collapsed, item}: Props) => {
+export const MenuItem = ({level, collapsed, item}: Props) => {
     const {enableSecondaryMenuIndent} = useOptionsContext();
     const titleContainerRef = useRef<HTMLDivElement>(null);
     const location = useLocation();
@@ -125,5 +125,3 @@ const MenuItem = ({level, collapsed, item}: Props) => {
         </Tooltip>
     );
 };
-
-export default MenuItem;
