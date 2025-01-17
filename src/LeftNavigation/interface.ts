@@ -27,13 +27,17 @@ export interface LeftNavigationMenuItem {
     style?: NavLinkProps['style'];
     // 二级菜单，最多支持二级
     children?: Array<LeftNavigationMenuItem | LeftNavigationDividerItem>;
+    // 二级菜单的适配写法
+    childrenElement?: ReactNode;
 }
 
 export interface LeftNavigationProps {
     // Logo 必选
     logo: LeftNavigationMenuItem;
     // 菜单配置，必选
-    items: Array<LeftNavigationMenuItem | LeftNavigationDividerItem>;
+    items?: Array<LeftNavigationMenuItem | LeftNavigationDividerItem>;
+    // 菜单兼容写法
+    childrenElement?: ReactNode;
     // 折叠相关
     // 是否开启折叠功能，关闭时，不显示折叠按钮。默认开启
     enableCollapse?: boolean;

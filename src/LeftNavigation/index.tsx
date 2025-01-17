@@ -4,8 +4,8 @@ import {useCallback, useMemo} from 'react';
 import {css, cx} from '@emotion/css';
 import {variables} from '../constants/variables';
 import {LeftNavigationProps} from './interface';
-import MenuList from './MenuList';
-import Collapse from './Collapse';
+import {MenuList} from './MenuList';
+import {Collapse} from './Collapse';
 import {OptionsContextProvider} from './Context';
 import {Divider} from './Divider';
 import {MenuItemIconOnly} from './MenuItemIconOnly';
@@ -64,6 +64,7 @@ export const LeftNavigation = ({
     className,
     style,
     items,
+    childrenElement,
     enableCollapse = true,
     defaultCollapsed,
     collapsed,
@@ -87,8 +88,8 @@ export const LeftNavigation = ({
     );
 
     const context = useMemo(
-        () => ({enableSecondaryMenuIndent}),
-        [enableSecondaryMenuIndent]
+        () => ({enableSecondaryMenuIndent, collapsed: innerCollapsed}),
+        [enableSecondaryMenuIndent, innerCollapsed]
     );
 
     return (
@@ -101,14 +102,14 @@ export const LeftNavigation = ({
                 )}
                 style={style}
             >
-                <MenuItemIconOnly collapsed={innerCollapsed} item={{className: itemCss, ...logo}} />
-                <Divider collapsed={collapsed} />
+                <MenuItemIconOnly item={{className: itemCss, ...logo}} />
+                <Divider />
                 <HiddenScrollbar>
-                    <MenuList collapsed={innerCollapsed} level={1} items={items} />
+                    <MenuList level={1} items={items} childrenElement={childrenElement} />
                 </HiddenScrollbar>
                 <Flex1 />
-                <Divider collapsed={collapsed} />
-                <Collapse collapsed={innerCollapsed} onClick={handleClick} />
+                <Divider />
+                <Collapse onClick={handleClick} />
             </Container>
             <WidthPlaceholder className={innerCollapsed ? collapsedCss : expandedCss} />
         </OptionsContextProvider>

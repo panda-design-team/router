@@ -1,23 +1,23 @@
 import {css} from '@emotion/css';
 import {IconCollapse} from '../icons';
 import {MenuItemContainer} from './MenuItemContainer';
+import {useOptionsContext} from './Context';
 
 const itemCss = css`
     height: 40px !important;
 `;
 
 interface Props {
-    collapsed: boolean;
     onClick: () => void;
 }
 
-const Collapse = ({collapsed, onClick}: Props) => {
+export const Collapse = ({onClick}: Props) => {
+    const {collapsed} = useOptionsContext();
     const iconCss = css`
         transform: ${collapsed ? 'rotate(180deg)' : 'unset'};
     `;
     return (
         <MenuItemContainer
-            collapsed={collapsed}
             isActive={false}
             item={{className: itemCss, onClick} as any}
         >
@@ -25,5 +25,3 @@ const Collapse = ({collapsed, onClick}: Props) => {
         </MenuItemContainer>
     );
 };
-
-export default Collapse;

@@ -3,6 +3,7 @@ import {css} from '@emotion/css';
 import {variables} from '../constants/variables';
 import {LeftNavigationMenuItem} from './interface';
 import {MenuItemContainer} from './MenuItemContainer';
+import {useOptionsContext} from './Context';
 
 const IconContainer = styled.div`
     position: absolute;
@@ -43,11 +44,11 @@ const TitleContainer = styled.div`
 `;
 
 interface Props {
-    collapsed: boolean;
     item: LeftNavigationMenuItem;
 }
 
-export const MenuItemIconOnly = ({collapsed, item}: Props) => {
+export const MenuItemIconOnly = ({item}: Props) => {
+    const {collapsed} = useOptionsContext();
     const {
         icon,
         title,
@@ -55,7 +56,6 @@ export const MenuItemIconOnly = ({collapsed, item}: Props) => {
 
     return (
         <MenuItemContainer
-            collapsed={collapsed}
             isActive={false}
             item={item}
         >

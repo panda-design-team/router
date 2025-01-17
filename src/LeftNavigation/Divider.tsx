@@ -1,5 +1,6 @@
 import {css, cx} from '@emotion/css';
 import {variables} from '../constants/variables';
+import {useOptionsContext} from './Context';
 
 const dividerCss = css`
     background-color: ${variables.borderColor};
@@ -14,10 +15,7 @@ const expandedCss = css`
     margin: 0 6px;
 `;
 
-interface Props {
-    collapsed?: boolean;
-}
-
-export const Divider = ({collapsed}: Props) => {
+export const Divider = () => {
+    const {collapsed} = useOptionsContext();
     return <div className={cx(dividerCss, collapsed ? collapsedCss : expandedCss)} />;
 };

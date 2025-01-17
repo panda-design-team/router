@@ -4,6 +4,7 @@ import {ReactNode, useCallback} from 'react';
 import {css, cx} from '@emotion/css';
 import {calculated, variables} from '../constants/variables';
 import {LeftNavigationMenuItem} from './interface';
+import {useOptionsContext} from './Context';
 
 const Container = styled.div`
     position: relative;
@@ -44,14 +45,14 @@ const expandedContainerCss = css`
 `;
 
 interface Props {
-    collapsed: boolean;
     isActive: boolean;
     item: LeftNavigationMenuItem;
     children: ReactNode;
 }
 
 // eslint-disable-next-line complexity
-export const MenuItemContainer = ({isActive, collapsed, item, children}: Props) => {
+export const MenuItemContainer = ({isActive, item, children}: Props) => {
+    const {collapsed} = useOptionsContext();
     const navigate = useNavigate();
     const {
         to,

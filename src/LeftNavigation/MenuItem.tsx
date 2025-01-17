@@ -47,13 +47,13 @@ const expandedTitleCss = css`
 `;
 
 interface Props {
-    collapsed: boolean;
     level: 1 | 2;
     item: LeftNavigationMenuItem;
 }
 
 // eslint-disable-next-line complexity
-export const MenuItem = ({level, collapsed, item}: Props) => {
+export const MenuItem = ({level, item}: Props) => {
+    const {collapsed} = useOptionsContext();
     const {enableSecondaryMenuIndent} = useOptionsContext();
     const titleContainerRef = useRef<HTMLDivElement>(null);
     const location = useLocation();
@@ -108,7 +108,6 @@ export const MenuItem = ({level, collapsed, item}: Props) => {
     return (
         <Tooltip placement="right" title={tooltipTitle}>
             <MenuItemContainer
-                collapsed={collapsed}
                 isActive={isActive}
                 item={item}
             >

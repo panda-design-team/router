@@ -1,10 +1,11 @@
-import {Fragment, useMemo} from 'react';
+import {Fragment, ReactNode, useMemo} from 'react';
 import {css} from '@emotion/css';
 import styled from '@emotion/styled';
 import {calculated, variables} from '../constants/variables';
 import {Divider} from './Divider';
 import {LeftNavigationProps} from './interface';
 import {MenuItem} from './MenuItem';
+import {useOptionsContext} from './Context';
 
 const Container = styled.div`
     display: flex;
@@ -20,12 +21,13 @@ const getBg = (level: 1 | 2, collapse: boolean) => {
 };
 
 interface Props {
-    collapsed: boolean;
     level: 1 | 2;
-    items: LeftNavigationProps['items'];
+    items?: LeftNavigationProps['items'];
+    childrenElement?: ReactNode;
 }
 
-const MenuList = ({level, collapsed, items}: Props) => {
+export const MenuList = ({level, items, childrenElement}: Props) => {
+    const {collapsed} = useOptionsContext();
     const dynamicCss = useMemo(
         () => {
             const bg = getBg(level, collapsed);
@@ -40,16 +42,15 @@ const MenuList = ({level, collapsed, items}: Props) => {
     );
     return (
         <Container className={dynamicCss}>
-            {items.map((item, index) => {
+            {items?.map((item, index) => {
                 /* eslint-disable react/no-array-index-key */
                 if (item.type === 'divider') {
-                    return <Divider key={`divider-${index}`} collapsed={collapsed} />;
+                    return <Divider key={`divider-${index}`} />;
                 }
                 const element = (
                     <MenuItem
                         key={`item-${item.title}-${index}`}
                         level={level}
-                        collapsed={collapsed}
                         item={item}
                     />
                 );
@@ -57,15 +58,18 @@ const MenuList = ({level, collapsed, items}: Props) => {
                     return (
                         <Fragment key={`list-${item.title}-${index}`}>
                             {element}
-                            <MenuList collapsed={collapsed} level={2} items={item.children} />
+                            <MenuList
+                                level={2}
+                                items={item.children}
+                                childrenElement={item.childrenElement}
+                            />
                         </Fragment>
                     );
                 }
                 return element;
                 /* eslint-enable react/no-array-index-key */
             })}
+            {childrenElement}
         </Container>
     );
 };
-
-export default MenuList;
