@@ -9,7 +9,7 @@ import {Collapse} from './Collapse';
 import {OptionsContextProvider} from './Context';
 import {Divider} from './Divider';
 import {MenuItemIconOnly} from './MenuItemIconOnly';
-import {festivalExpandedCss} from './festival';
+import {FestivalBg, festivalExpandedCss} from './festival';
 
 const Container = styled.div`
     position: fixed;
@@ -18,7 +18,7 @@ const Container = styled.div`
     top: ${variables.top};
     left: 0;
     bottom: 0;
-    background-color: ${variables.bg};
+    background: ${variables.bg};
     border-right: 1px solid ${variables.borderColor};
     overflow: hidden;
     transition: width 0.3s;
@@ -102,6 +102,7 @@ export const LeftNavigation = ({
                 )}
                 style={style}
             >
+                {enableFestival && <FestivalBg />}
                 <MenuItemIconOnly item={{className: itemCss, ...logo}} />
                 <Divider />
                 <HiddenScrollbar>
