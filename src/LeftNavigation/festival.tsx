@@ -10,7 +10,7 @@ import {useOptionsContext} from './Context';
 export const festivalExpandedCss = css`
     --panda-left-navigation-color: white;
     --panda-left-navigation-active-color: white;
-    --panda-left-navigation-border-color: #e0e0e0;
+    --panda-left-navigation-border-color: #ffffff4d;
     --panda-left-navigation-active-bg: #00000033;
     --panda-left-navigation-hover-bg: #00000019;
     --panda-left-navigation-level-2-bg-collapsed: #00000033;

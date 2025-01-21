@@ -1,6 +1,6 @@
 {
   "name": "@panda-design/router",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "description": "Panda Design",
   "main": "es/index.js",
   "module": "es/index.js",
