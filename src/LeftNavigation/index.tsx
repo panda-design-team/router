@@ -109,7 +109,6 @@ export const LeftNavigation = ({
                     <MenuList level={1} items={items} childrenElement={childrenElement} />
                 </HiddenScrollbar>
                 <Flex1 />
-                <Divider />
                 <Collapse onClick={handleClick} />
             </Container>
             <WidthPlaceholder className={innerCollapsed ? collapsedCss : expandedCss} />
