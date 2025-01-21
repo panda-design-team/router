@@ -24,6 +24,7 @@ export const variables = {
     level2BgCollapsed: `var(--panda-left-navigation-level-2-bg-collapsed, ${colors.level2BgCollapsed})`,
     level2BgExpanded: 'var(--panda-left-navigation-level-2-bg-expanded, transparent)',
     iconSize: 'var(--panda-left-navigation-icon-size, 16px)',
+    logoIconSize: 'var(--panda-left-navigation-icon-size, 20px)',
     iconTop: 'var(--panda-left-navigation-icon-top, 7px)',
     gapVerticalCollapsed: 'var(--panda-left-navigation-gap-vertical-collapsed, 4px)',
     gapVerticalExpanded: 'var(--panda-left-navigation-gap-vertical-expanded, 4px)',

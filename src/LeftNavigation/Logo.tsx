@@ -10,26 +10,26 @@ const IconContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    width: ${variables.iconSize};
-    height: ${variables.iconSize};
+    width: ${variables.logoIconSize};
+    height: ${variables.logoIconSize};
     transition: top 0.3s, left 0.3s;
 
     svg {
-        font-size: ${variables.iconSize};
-        width: ${variables.iconSize};
-        height: ${variables.iconSize};
+        font-size: ${variables.logoIconSize};
+        width: ${variables.logoIconSize};
+        height: ${variables.logoIconSize};
         top: 0;
     }
 `;
 
 const collapsedIconCss = css`
-    top: 12px; // (40 - 16) / 2
-    left: 18px;
+    top: 10px; // (40 - 20) / 2
+    left: 16px; // (52 - 20) / 2
 `;
 
 const expandedIconCss = css`
-    top: 12px; // (40 - 16) / 2
-    left: 16px;
+    top: 10px; // (40 - 20) / 2
+    left: 14px; // 16 - 2
 `;
 
 const TitleContainer = styled.div`
@@ -47,7 +47,7 @@ interface Props {
     item: LeftNavigationMenuItem;
 }
 
-export const MenuItemIconOnly = ({item}: Props) => {
+export const Logo = ({item}: Props) => {
     const {collapsed} = useOptionsContext();
     const {
         icon,

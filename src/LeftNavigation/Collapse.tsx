@@ -1,12 +1,14 @@
 import {css, cx} from '@emotion/css';
 import styled from '@emotion/styled';
 import {IconCollapse} from '../icons';
+import {variables} from '../constants/variables';
 import {MenuItemContainer} from './MenuItemContainer';
 import {useOptionsContext} from './Context';
 
 const Container = styled.div`
     display: flex;
     justify-content: end;
+    font-size: ${variables.iconSize};
 `;
 
 const itemCss = css`
@@ -24,7 +26,7 @@ interface Props {
 export const Collapse = ({onClick}: Props) => {
     const {collapsed} = useOptionsContext();
     const iconCss = css`
-        transform: ${collapsed ? 'rotate(180deg)' : 'unset'};
+        transform: ${collapsed ? 'scaleX(-1)' : 'unset'};
     `;
     return (
         <Container>

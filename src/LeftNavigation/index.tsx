@@ -8,7 +8,7 @@ import {MenuList} from './MenuList';
 import {Collapse} from './Collapse';
 import {OptionsContextProvider} from './Context';
 import {Divider} from './Divider';
-import {MenuItemIconOnly} from './MenuItemIconOnly';
+import {Logo} from './Logo';
 import {FestivalBg, festivalExpandedCss} from './festival';
 
 const Container = styled.div`
@@ -103,7 +103,7 @@ export const LeftNavigation = ({
                 style={style}
             >
                 {enableFestival && <FestivalBg />}
-                <MenuItemIconOnly item={{className: itemCss, ...logo}} />
+                <Logo item={{className: itemCss, ...logo}} />
                 <Divider />
                 <HiddenScrollbar>
                     <MenuList level={1} items={items} childrenElement={childrenElement} />
