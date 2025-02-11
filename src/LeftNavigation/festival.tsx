@@ -7,7 +7,7 @@ import upCollapsed from '../assets/up-collapsed.png';
 import downCollapsed from '../assets/down-collapsed.png';
 import {useOptionsContext} from './Context';
 
-export const festivalExpandedCss = css`
+export const festivalCss = css`
     --panda-left-navigation-color: white;
     --panda-left-navigation-active-color: white;
     --panda-left-navigation-border-color: #ffffff4d;

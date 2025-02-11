@@ -1,12 +1,11 @@
-import styled from '@emotion/styled';
-import {useNavigate} from 'react-router-dom';
-import {ReactNode, useCallback} from 'react';
+import {Link} from 'react-router-dom';
+import {ReactNode} from 'react';
 import {css, cx} from '@emotion/css';
 import {calculated, variables} from '../constants/variables';
 import {LeftNavigationMenuItem} from './interface';
 import {useOptionsContext} from './Context';
 
-const Container = styled.div`
+const containerCss = css`
     position: relative;
     display: flex;
     align-items: center;
@@ -53,7 +52,6 @@ interface Props {
 // eslint-disable-next-line complexity
 export const MenuItemContainer = ({isActive, item, children}: Props) => {
     const {collapsed} = useOptionsContext();
-    const navigate = useNavigate();
     const {
         to,
         className,
@@ -61,27 +59,19 @@ export const MenuItemContainer = ({isActive, item, children}: Props) => {
         onClick,
     } = item;
 
-    const handleClick = useCallback(
-        () => {
-            if (to) {
-                navigate(to);
-            }
-            onClick?.();
-        },
-        [navigate, onClick, to]
-    );
-
     return (
-        <Container
+        <Link
+            to={to as string}
             className={cx(
-                    className as any,
-                    isActive ? activeContainerCss : inactiveContainerCss,
-                    collapsed ? collapsedContainerCss : expandedContainerCss
+                containerCss,
+                isActive ? activeContainerCss : inactiveContainerCss,
+                collapsed ? collapsedContainerCss : expandedContainerCss,
+                className as any
             )}
             style={style as any}
-            onClick={handleClick}
+            onClick={onClick}
         >
             {children}
-        </Container>
+        </Link>
     );
 };

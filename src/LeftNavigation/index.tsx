@@ -9,7 +9,7 @@ import {Collapse} from './Collapse';
 import {OptionsContextProvider} from './Context';
 import {Divider} from './Divider';
 import {Logo} from './Logo';
-import {FestivalBg, festivalExpandedCss} from './festival';
+import {FestivalBg, festivalCss} from './festival';
 
 const Container = styled.div`
     position: fixed;
@@ -43,11 +43,13 @@ const itemCss = css`
     height: 40px !important;
 `;
 
-const HiddenScrollbar = styled.div`
-    width: calc(100% + 20px);
-    overflow-x: hidden;
+const scrollbarHide = css`
     overflow-y: auto;
-    padding-right: 20px;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    &::-webkit-scrollbar {
+        display: none !important;
+    }
 `;
 
 const Flex1 = styled.div`
@@ -98,16 +100,16 @@ export const LeftNavigation = ({
                 className={cx(
                     className,
                     innerCollapsed ? collapsedCss : expandedCss,
-                    enableFestival && (innerCollapsed ? festivalExpandedCss : festivalExpandedCss)
+                    enableFestival && festivalCss
                 )}
                 style={style}
             >
                 {enableFestival && <FestivalBg />}
                 <Logo item={{className: itemCss, ...logo}} />
                 <Divider />
-                <HiddenScrollbar>
+                <div className={scrollbarHide}>
                     <MenuList level={1} items={items} childrenElement={childrenElement} />
-                </HiddenScrollbar>
+                </div>
                 <Flex1 />
                 <Collapse onClick={handleClick} />
             </Container>
