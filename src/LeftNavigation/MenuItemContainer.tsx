@@ -15,20 +15,31 @@ const containerCss = css`
     white-space: nowrap;
     cursor: pointer;
     transition: width 0.3s, height 0.3s;
-
-    :hover {
-        background-color: ${variables.hoverBg};
-    }
 `;
 
 const activeContainerCss = css`
     color: ${variables.activeColor};
     background-color: ${variables.activeBg};
+
+    :hover,
+    :active,
+    :focus {
+        color: ${variables.activeColor};
+        background-color: ${variables.hoverBg};
+    }
+
 `;
 
 const inactiveContainerCss = css`
     color: ${variables.color};
     background-color: unset;
+
+    :hover,
+    :active,
+    :focus {
+        color: ${variables.color};
+        background-color: ${variables.hoverBg};
+    }
 `;
 
 const collapsedContainerCss = css`
@@ -58,9 +69,10 @@ export const MenuItemContainer = ({isActive, item, children}: Props) => {
         style,
         onClick,
     } = item;
+    const Component = item.to ? Link : 'div';
 
     return (
-        <Link
+        <Component
             to={to as string}
             className={cx(
                 containerCss,
@@ -72,6 +84,6 @@ export const MenuItemContainer = ({isActive, item, children}: Props) => {
             onClick={onClick}
         >
             {children}
-        </Link>
+        </Component>
     );
 };
