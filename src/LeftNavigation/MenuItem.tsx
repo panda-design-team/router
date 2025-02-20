@@ -109,6 +109,7 @@ export const MenuItem = ({level, item}: Props) => {
         <Tooltip placement="right" title={tooltipTitle}>
             <MenuItemContainer
                 isActive={isActive}
+                level={level}
                 item={item}
             >
                 <IconContainer className={collapsed ? collapsedIconCss : expandedIconCss}>

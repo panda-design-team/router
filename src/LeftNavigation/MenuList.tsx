@@ -14,10 +14,10 @@ const Container = styled.div`
 `;
 
 const getBg = (level: 1 | 2, collapse: boolean) => {
-    if (level === 1) {
-        return collapse ? variables.level1BgCollapsed : variables.level1BgExpanded;
+    if (collapse && level === 2) {
+        return variables.listBgDeep;
     }
-    return collapse ? variables.level2BgCollapsed : variables.level2BgExpanded;
+    return variables.listBg;
 };
 
 interface Props {

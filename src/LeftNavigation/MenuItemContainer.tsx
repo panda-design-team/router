@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom';
-import {ReactNode} from 'react';
+import {useMemo, ReactNode} from 'react';
 import {css, cx} from '@emotion/css';
 import {calculated, variables} from '../constants/variables';
 import {LeftNavigationMenuItem} from './interface';
@@ -17,31 +17,6 @@ const containerCss = css`
     transition: width 0.3s, height 0.3s;
 `;
 
-const activeContainerCss = css`
-    color: ${variables.activeColor};
-    background-color: ${variables.activeBg};
-
-    :hover,
-    :active,
-    :focus {
-        color: ${variables.activeColor};
-        background-color: ${variables.hoverBg};
-    }
-
-`;
-
-const inactiveContainerCss = css`
-    color: ${variables.color};
-    background-color: unset;
-
-    :hover,
-    :active,
-    :focus {
-        color: ${variables.color};
-        background-color: ${variables.hoverBg};
-    }
-`;
-
 const collapsedContainerCss = css`
     width: ${calculated.innerWidthCollapsed};
     height: 52px;
@@ -54,14 +29,29 @@ const expandedContainerCss = css`
     border-radius: 6px;
 `;
 
+const getBgActive = (level: 1 | 2, collapse: boolean) => {
+    if (collapse && level === 2) {
+        return variables.itemBgActiveDeep;
+    }
+    return variables.itemBgActive;
+};
+
+const getBgHover = (level: 1 | 2, collapse: boolean) => {
+    if (collapse && level === 2) {
+        return variables.itemBgHoverDeep;
+    }
+    return variables.itemBgHover;
+};
+
 interface Props {
     isActive: boolean;
+    level: 1 | 2;
     item: LeftNavigationMenuItem;
     children: ReactNode;
 }
 
 // eslint-disable-next-line complexity
-export const MenuItemContainer = ({isActive, item, children}: Props) => {
+export const MenuItemContainer = ({isActive, level, item, children}: Props) => {
     const {collapsed} = useOptionsContext();
     const {
         to,
@@ -71,12 +61,31 @@ export const MenuItemContainer = ({isActive, item, children}: Props) => {
     } = item;
     const Component = item.to ? Link : 'div';
 
+    const interactiveCss = useMemo(
+        () => {
+            const bgActive = getBgActive(level, collapsed);
+            const bgHover = getBgHover(level, collapsed);
+            return css`
+                color: ${isActive ? variables.activeColor : variables.color};
+                background-color: ${isActive ? bgActive : 'unset'};
+
+                :hover,
+                :active,
+                :focus {
+                    color: ${isActive ? variables.activeColor : variables.color};
+                    background-color: ${bgHover};
+                }
+            `;
+        },
+        [collapsed, isActive, level]
+    );
+
     return (
         <Component
             to={to as string}
             className={cx(
                 containerCss,
-                isActive ? activeContainerCss : inactiveContainerCss,
+                interactiveCss,
                 collapsed ? collapsedContainerCss : expandedContainerCss,
                 className as any
             )}

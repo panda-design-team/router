@@ -32,6 +32,7 @@ export const Collapse = ({onClick}: Props) => {
         <Container>
             <MenuItemContainer
                 isActive={false}
+                level={1}
                 item={{className: cx(itemCss, !collapsed && itemExpandedCss), onClick} as any}
             >
                 <IconCollapse className={iconCss} />

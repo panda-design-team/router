@@ -80,13 +80,11 @@ export const LeftNavigation = ({
     });
     const handleClick = useCallback(
         () => {
-            if (enableCollapse) {
-                const nextCollapsed = !innerCollapsed;
-                onCollapse?.(nextCollapsed);
-                setInnerCollapsed(nextCollapsed);
-            }
+            const nextCollapsed = !innerCollapsed;
+            onCollapse?.(nextCollapsed);
+            setInnerCollapsed(nextCollapsed);
         },
-        [enableCollapse, innerCollapsed, onCollapse, setInnerCollapsed]
+        [innerCollapsed, onCollapse, setInnerCollapsed]
     );
 
     const context = useMemo(
@@ -111,7 +109,7 @@ export const LeftNavigation = ({
                     <MenuList level={1} items={items} childrenElement={childrenElement} />
                 </div>
                 <Flex1 />
-                <Collapse onClick={handleClick} />
+                {enableCollapse && <Collapse onClick={handleClick} />}
             </Container>
             <WidthPlaceholder className={innerCollapsed ? collapsedCss : expandedCss} />
         </OptionsContextProvider>

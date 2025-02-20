@@ -57,6 +57,7 @@ export const Logo = ({item}: Props) => {
     return (
         <MenuItemContainer
             isActive={false}
+            level={1}
             item={item}
         >
             <IconContainer className={collapsed ? collapsedIconCss : expandedIconCss}>

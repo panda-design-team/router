@@ -1,6 +1,6 @@
 {
   "name": "@panda-design/router",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "description": "Panda Design",
   "main": "es/index.js",
   "module": "es/index.js",
@@ -8,6 +8,7 @@
   "scripts": {
     "test": "skr test --",
     "lint": "skr lint",
+    "lint-type": "tsc --noEmit",
     "build": "rm -rf es/ && tsc && node scripts/copyAssets.mjs",
     "prepublishOnly": "yarn build"
   },
