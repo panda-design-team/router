@@ -9,7 +9,6 @@ import {Collapse} from './Collapse';
 import {OptionsContextProvider} from './Context';
 import {Divider} from './Divider';
 import {Logo} from './Logo';
-import {FestivalBg, festivalCss} from './festival';
 
 const Container = styled.div`
     position: fixed;
@@ -72,7 +71,6 @@ export const LeftNavigation = ({
     collapsed,
     onCollapse,
     enableSecondaryMenuIndent,
-    enableFestival,
 }: LeftNavigationProps) => {
     const [innerCollapsed, setInnerCollapsed] = useMergedState(false, {
         value: collapsed,
@@ -97,12 +95,10 @@ export const LeftNavigation = ({
             <Container
                 className={cx(
                     className,
-                    innerCollapsed ? collapsedCss : expandedCss,
-                    enableFestival && festivalCss
+                    innerCollapsed ? collapsedCss : expandedCss
                 )}
                 style={style}
             >
-                {enableFestival && <FestivalBg />}
                 <Logo item={{className: itemCss, ...logo}} />
                 <Divider />
                 <div className={scrollbarHide}>

@@ -56,8 +56,8 @@ export interface LeftNavigationProps {
     className?: string;
     // style
     style?: CSSProperties;
-    // 开启后，二级菜单会有缩进，缩进的大小油 number 指定
+    // 开启后，二级菜单会有缩进，缩进的大小由 number 指定
     enableSecondaryMenuIndent?: number;
-    // 开启节日样式
+    // 开启节日样式，无实际效果，仅保留参数
     enableFestival?: boolean;
 }

@@ -69,8 +69,12 @@ export const MenuItemContainer = ({isActive, level, item, children}: Props) => {
                 color: ${isActive ? variables.activeColor : variables.color};
                 background-color: ${isActive ? bgActive : 'unset'};
 
+                :active {
+                    color: ${variables.activeColor};
+                    background-color: ${bgActive};
+                }
+
                 :hover,
-                :active,
                 :focus {
                     color: ${isActive ? variables.activeColor : variables.color};
                     background-color: ${bgHover};
