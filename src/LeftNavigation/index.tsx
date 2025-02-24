@@ -21,7 +21,7 @@ const Container = styled.div`
     border-right: 1px solid ${variables.borderColor};
     overflow: hidden;
     transition: width 0.3s;
-    z-index: 1;
+    z-index: ${variables.zIndex};
 `;
 
 const collapsedCss = css`

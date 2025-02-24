@@ -1,4 +1,5 @@
 const colors = {
+    bg: '#ffffff',
     borderColor: '#e8e8e8', // token.colorBorder
     color: '#181818', // token.colorText
     activeColor: '#0080ff', // token.colorPrimary
@@ -12,7 +13,8 @@ const colors = {
 
 export const variables = {
     top: 'var(--panda-left-navigation-top, 48px)',
-    bg: 'var(--panda-left-navigation-bg, transparent)',
+    bg: `var(--panda-left-navigation-bg, ${colors.bg})`,
+    zIndex: 'var(--panda-left-navigation-z-index, 2)',
     borderColor: `var(--panda-left-navigation-border-color, ${colors.borderColor})`,
     widthCollapsed: 'var(--panda-left-navigation-width-collapsed, 57px)',
     paddingCollapsed: 'var(--panda-left-navigation-padding-collapsed, 2px)',
