@@ -38,7 +38,7 @@ export const MenuList = ({level, items, childrenElement}: Props) => {
                 width: ${collapsed ? calculated.innerWidthCollapsed : calculated.innerWidthExpanded};
             `;
         },
-        [level, collapsed]
+        [level, collapsed],
     );
     return (
         <Container className={dynamicCss}>

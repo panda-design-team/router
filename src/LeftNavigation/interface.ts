@@ -26,7 +26,7 @@ export interface LeftNavigationMenuItem {
     // 类似 react-router 可以定义是否 isActive 两种 style
     style?: NavLinkProps['style'];
     // 二级菜单，最多支持二级
-    children?: Array<LeftNavigationMenuItem | LeftNavigationDividerItem>;
+    children?: (LeftNavigationMenuItem | LeftNavigationDividerItem)[];
     // 二级菜单的适配写法
     childrenElement?: ReactNode;
 }
@@ -35,7 +35,7 @@ export interface LeftNavigationProps {
     // Logo 必选
     logo: LeftNavigationMenuItem;
     // 菜单配置，必选
-    items?: Array<LeftNavigationMenuItem | LeftNavigationDividerItem>;
+    items?: (LeftNavigationMenuItem | LeftNavigationDividerItem)[];
     // 菜单兼容写法
     childrenElement?: ReactNode;
     // 折叠相关

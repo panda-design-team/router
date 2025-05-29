@@ -39,5 +39,4 @@ export const Collapse = ({onClick}: Props) => {
             </MenuItemContainer>
         </Container>
     );
-
 };

@@ -82,12 +82,12 @@ export const LeftNavigation = ({
             onCollapse?.(nextCollapsed);
             setInnerCollapsed(nextCollapsed);
         },
-        [innerCollapsed, onCollapse, setInnerCollapsed]
+        [innerCollapsed, onCollapse, setInnerCollapsed],
     );
 
     const context = useMemo(
         () => ({enableSecondaryMenuIndent, collapsed: innerCollapsed}),
-        [enableSecondaryMenuIndent, innerCollapsed]
+        [enableSecondaryMenuIndent, innerCollapsed],
     );
 
     return (
@@ -95,7 +95,7 @@ export const LeftNavigation = ({
             <Container
                 className={cx(
                     className,
-                    innerCollapsed ? collapsedCss : expandedCss
+                    innerCollapsed ? collapsedCss : expandedCss,
                 )}
                 style={style}
             >

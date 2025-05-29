@@ -35,6 +35,6 @@ export const useRouteDocumentTitle = (routes: RouteObject[], context?: DocumentT
             const items = getDocumentTitleFromRoute(routeMatches, context);
             return items.join('-');
         },
-        [context, location, routes]
+        [context, location, routes],
     );
 };

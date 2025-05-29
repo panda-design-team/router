@@ -15,7 +15,8 @@ const getBreadcrumbItemsFromRoute = (routeMatches: PartialRouteMatch[] | null): 
 
         if (route.breadcrumbProps) {
             items.push(route.breadcrumbProps);
-        } else if (route.breadcrumb) {
+        }
+        else if (route.breadcrumb) {
             items.push({title: route.breadcrumb});
         }
     }
@@ -29,6 +30,6 @@ export const useRouteBreadcrumbItems = (routes: RouteObject[]) => {
             const routeMatches = matchRoutes(routes, location);
             return getBreadcrumbItemsFromRoute(routeMatches);
         },
-        [location, routes]
+        [location, routes],
     );
 };

@@ -90,7 +90,7 @@ export const MenuItem = ({level, item}: Props) => {
                 }
             }
         },
-        [collapsed, indent]
+        [collapsed, indent],
     );
 
     const tooltipTitle = useMemo(
@@ -102,7 +102,7 @@ export const MenuItem = ({level, item}: Props) => {
                 return title;
             }
         },
-        [collapsed, shortTitle, title, tooltip]
+        [collapsed, shortTitle, title, tooltip],
     );
 
     return (

@@ -15,8 +15,9 @@ export const useSearchParams = () => {
 const omitByUndefined = (object: Record<string, unknown>) => {
     // 总是返回新对象
     const result: Record<string, unknown> = {...object};
-    Object.keys(result).forEach(key => {
+    Object.keys(result).forEach((key) => {
         if (result[key] === undefined) {
+            // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
             delete result[key];
         }
     });
@@ -40,7 +41,7 @@ export const useSearchParamsUpdate = (options?: ParamsSearchParamsUpdate) => {
                 : omitByUndefined({...prevParams, ...params});
             navigate({search: queryStringify(nextParams)}, {replace});
         },
-        [navigate, replace, strategy]
+        [navigate, replace, strategy],
     );
 
     return handleSearchReplace;

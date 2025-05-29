@@ -81,7 +81,7 @@ export const MenuItemContainer = ({isActive, level, item, children}: Props) => {
                 }
             `;
         },
-        [collapsed, isActive, level]
+        [collapsed, isActive, level],
     );
 
     return (
@@ -91,7 +91,7 @@ export const MenuItemContainer = ({isActive, level, item, children}: Props) => {
                 containerCss,
                 interactiveCss,
                 collapsed ? collapsedContainerCss : expandedContainerCss,
-                className as any
+                className as any,
             )}
             style={style as any}
             onClick={onClick}
